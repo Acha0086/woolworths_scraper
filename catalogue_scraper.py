@@ -165,7 +165,8 @@ if __name__ == "__main__":
                     heading = name2.find_element_by_xpath('.//span')
 
                     # include if the discount is greater than 25%
-                    if 1 - current_price / float(old_price[0]) > 0.25:
+                    discount = 0.2
+                    if 1 - current_price / float(old_price[0]) > discount:
                         specials[heading.text] = (current_price, 1 - current_price / float(old_price[0]))
                 except Exception as e:
                     print(e)
@@ -191,6 +192,6 @@ if __name__ == "__main__":
                 total += 1
         f.truncate()
 
-    ctypes.windll.user32.MessageBoxW(0, f"There are {total} specials!", "Specials tracker!", 1)
+    ctypes.windll.user32.MessageBoxExW(0, f"There are {total} specials!", "Specials tracker!", 0x40000)
     browser.quit()
     sys.exit()
